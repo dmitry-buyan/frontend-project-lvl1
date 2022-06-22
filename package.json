@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/dmitry-buyan/frontend-project-lvl1.git"
   },
+ "bin": {
+    "brain-games": "bin/brain-games.js"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
