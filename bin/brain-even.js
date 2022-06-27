@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { greetUser, userName } from '../src/cli.js';
-import isAnswerCorrect from '../src/check-answer.js';
+import isAnswerCorrect from '../src/checknum.js';
 import { getRandomInteger } from '../src/utils.js';
 
 greetUser();
