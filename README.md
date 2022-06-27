@@ -3,3 +3,6 @@
 
 ### Maintainability:
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+
+### Asciinema:
+[![asciicast](https://asciinema.org/a/94Dhn9L2nVblSKfkVP225HRKD.svg)](https://asciinema.org/a/94Dhn9L2nVblSKfkVP225HRKD)
