@@ -3,3 +3,6 @@
 
 ### Maintainability:
 [![Maintainability](https://api.codeclimate.com/v1/badges/3814fcdb69095fb7bc91/maintainability)](https://codeclimate.com/github/dmitry-buyan/frontend-project-lvl1/maintainability)
+
+### Asciinema:
+https://asciinema.org/a/OxdNl9tBX4ELdX2qzQ0reYLXI
