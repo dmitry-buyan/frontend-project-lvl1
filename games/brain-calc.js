@@ -4,12 +4,11 @@ import {
   getUserReply,
   showUserReply,
   getRandomInteger,
+  getRandomArrayItem,
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
 } from '../src/index.js';
-
-const getRandomArrayItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const getRandomMathExpression = () => {
   const operators = ['+', '-', '*'];
