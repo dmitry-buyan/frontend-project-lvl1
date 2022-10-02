@@ -7,6 +7,8 @@ const getRandomInteger = () => {
   return Math.ceil(Math.random() * maxNumber);
 };
 
+const getRandomArrayItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
 const welcomeUser = (text) => {
   console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
@@ -27,6 +29,7 @@ export {
   getUserReply,
   showUserReply,
   getRandomInteger,
+  getRandomArrayItem,
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
