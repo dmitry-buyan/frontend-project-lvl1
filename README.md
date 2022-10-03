@@ -12,3 +12,6 @@
 
 ### Greatest common devisor:
 [![asciicast](https://asciinema.org/a/Cj6I2BxFUfMZpY2UOd5b5YUt2.svg)](https://asciinema.org/a/Cj6I2BxFUfMZpY2UOd5b5YUt2)
+
+### Progression:
+[![asciicast](https://asciinema.org/a/9tLFZeEsHmHBYR2IKEyNLLRx4.svg)](https://asciinema.org/a/9tLFZeEsHmHBYR2IKEyNLLRx4)
