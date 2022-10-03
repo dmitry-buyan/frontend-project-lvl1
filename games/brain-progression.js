@@ -50,7 +50,6 @@ const findMissingNumber = () => {
     newArray[index] = replacer;
 
     const replacedItem = progression[index];
-    console.log(replacedItem);
 
     const userReply = getUserReply(newArray.join(' '));
     showUserReply(userReply);
