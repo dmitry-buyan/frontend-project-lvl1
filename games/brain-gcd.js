@@ -15,7 +15,7 @@ const userName = welcomeUser(intro);
 const getAllDevisors = (num) => {
   const devisors = [];
 
-  for (let i = 1; i < num; i += 1) {
+  for (let i = 1; i <= num; i += 1) {
     if (num % i === 0) {
       devisors.push(i);
     }
