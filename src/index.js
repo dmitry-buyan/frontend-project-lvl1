@@ -1,6 +1,8 @@
 import readlineSync from 'readline-sync';
 
 const MAX_ROUNDS = 3;
+const REPLY_POSITIVE = 'yes';
+const REPLY_NEGATIVE = 'no';
 
 const getRandomInteger = () => {
   const maxNumber = 100;
@@ -25,6 +27,8 @@ const finishOnSuccess = (userName) => console.log(`Congratulations, ${userName}!
 
 export {
   MAX_ROUNDS,
+  REPLY_POSITIVE,
+  REPLY_NEGATIVE,
   welcomeUser,
   getUserReply,
   showUserReply,
