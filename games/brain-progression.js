@@ -49,15 +49,15 @@ const findMissingNumber = () => {
     const newArray = progression.slice();
     newArray[index] = replacer;
 
-    const replacedItem = progression[index];
+    const correctReply = progression[index];
 
     const userReply = getUserReply(newArray.join(' '));
     showUserReply(userReply);
 
-    if (Number(userReply) === replacedItem) {
+    if (Number(userReply) === correctReply) {
       showSuccessMessage();
     } else {
-      showErrorMessage(userReply, replacedItem, userName);
+      showErrorMessage(userReply, correctReply, userName);
       isReplyCorrect = false;
     }
   };
