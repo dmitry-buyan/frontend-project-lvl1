@@ -1,16 +1,19 @@
 import {
   MAX_ROUNDS,
+  REPLY_POSITIVE,
+  REPLY_NEGATIVE,
   welcomeUser,
   getUserReply,
   showUserReply,
   getRandomInteger,
   finishOnSuccess,
   showSuccessMessage,
+  showErrorMessage,
 } from '../src/index.js';
 
 const isEven = (number) => number % 2 === 0;
 
-const intro = 'Answer "yes" if the number is even, otherwise answer "no".';
+const intro = `Answer "${REPLY_POSITIVE}" if the number is even, otherwise answer "${REPLY_NEGATIVE}".`;
 const userName = welcomeUser(intro);
 
 const checkParity = () => {
@@ -20,13 +23,15 @@ const checkParity = () => {
     const userReply = getUserReply(number);
     showUserReply(userReply);
 
-    if ((isEven(number) && userReply === 'yes') || (!isEven(number) && userReply === 'no')) {
+    if ((isEven(number) && userReply === REPLY_POSITIVE)) {
       showSuccessMessage();
-    } else if ((isEven(number) && userReply === 'no')) {
-      console.log(`'${userReply}' is wrong answer ;(. Correct answer was 'yes'.\nLet's try again, ${userName}!`);
+    } else if ((!isEven(number) && userReply === REPLY_NEGATIVE)) {
+      showSuccessMessage();
+    } else if ((isEven(number) && userReply === REPLY_NEGATIVE)) {
+      showErrorMessage(userReply, REPLY_POSITIVE, userName);
       isReplyCorrect = false;
     } else {
-      console.log(`'${userReply}' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, ${userName}!`);
+      showErrorMessage(userReply, REPLY_NEGATIVE, userName);
       isReplyCorrect = false;
     }
   };
@@ -34,7 +39,8 @@ const checkParity = () => {
   let totalCorrectAnswers = 0;
 
   for (let i = 0; i < MAX_ROUNDS; i += 1) {
-    checkUserReply(getRandomInteger());
+    const randomInteger = getRandomInteger();
+    checkUserReply(randomInteger);
 
     if (isReplyCorrect) {
       totalCorrectAnswers += 1;
