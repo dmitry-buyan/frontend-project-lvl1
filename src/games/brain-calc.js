@@ -40,7 +40,7 @@ const calculateExpression = (string) => {
 const intro = 'What is the result of the expression?';
 const userName = welcomeUser(intro);
 
-const checkCalculatedExpression = () => {
+const runCalcGame = () => {
   let isReplyCorrect = true;
 
   const checkUserReply = () => {
@@ -75,4 +75,4 @@ const checkCalculatedExpression = () => {
   }
 };
 
-export default checkCalculatedExpression;
+export default runCalcGame;

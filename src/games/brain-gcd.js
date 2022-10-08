@@ -24,7 +24,7 @@ const getAllDevisors = (num) => {
   return devisors;
 };
 
-const findGreatestCommonDevisor = () => {
+const runGcdGame = () => {
   let isReplyCorrect = true;
   const numCount = 2;
 
@@ -64,4 +64,4 @@ const findGreatestCommonDevisor = () => {
   }
 };
 
-export default findGreatestCommonDevisor;
+export default runGcdGame;

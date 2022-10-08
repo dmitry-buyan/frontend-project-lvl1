@@ -28,7 +28,7 @@ const isPrime = (number) => {
   return true;
 };
 
-const checkPrimeNumber = () => {
+const runPrimeGame = () => {
   let isReplyCorrect = true;
 
   const checkUserReply = (number) => {
@@ -66,4 +66,4 @@ const checkPrimeNumber = () => {
   }
 };
 
-export default checkPrimeNumber;
+export default runPrimeGame;

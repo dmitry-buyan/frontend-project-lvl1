@@ -16,7 +16,7 @@ const isEven = (number) => number % 2 === 0;
 const intro = `Answer "${REPLY_POSITIVE}" if the number is even, otherwise answer "${REPLY_NEGATIVE}".`;
 const userName = welcomeUser(intro);
 
-const checkParity = () => {
+const runEvenGame = () => {
   let isReplyCorrect = true;
 
   const checkUserReply = (number) => {
@@ -54,4 +54,4 @@ const checkParity = () => {
   }
 };
 
-export default checkParity;
+export default runEvenGame;

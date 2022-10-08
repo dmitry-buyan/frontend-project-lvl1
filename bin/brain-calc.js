@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import checkCalculatedExpression from '../src/games/brain-calc.js';
+import runCalcGame from '../src/games/brain-calc.js';
 
-checkCalculatedExpression();
+runCalcGame();

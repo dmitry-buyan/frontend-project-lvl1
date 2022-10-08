@@ -37,7 +37,7 @@ const renderProgression = () => {
 
 const getRandomArrayIndex = (arr) => Math.floor(Math.random() * arr.length);
 
-const findMissingNumber = () => {
+const runProgressionGame = () => {
   const replacer = '..';
   let isReplyCorrect = true;
 
@@ -79,4 +79,4 @@ const findMissingNumber = () => {
   }
 };
 
-export default findMissingNumber;
+export default runProgressionGame;
