@@ -16,24 +16,22 @@ const isEven = (number) => number % 2 === 0;
 const intro = `Answer "${REPLY_POSITIVE}" if the number is even, otherwise answer "${REPLY_NEGATIVE}".`;
 const userName = welcomeUser(intro);
 
-const runEvenGame = () => {
-  const checkUserReply = () => {
-    let isReplyCorrect = true;
-    const num = getRandomInteger();
-    const reply = getUserReply(num);
-    showUserReply(reply);
+const checkUserReply = () => {
+  let isReplyCorrect = true;
+  const num = getRandomInteger();
+  const reply = getUserReply(num);
+  showUserReply(reply);
 
-    if ((isEven(num) && reply === REPLY_POSITIVE) || (!isEven(num) && reply === REPLY_NEGATIVE)) {
-      showSuccessMessage();
-    } else {
-      showErrorMessage(reply, REPLY_NEGATIVE, userName);
-      isReplyCorrect = false;
-    }
+  if ((isEven(num) && reply === REPLY_POSITIVE) || (!isEven(num) && reply === REPLY_NEGATIVE)) {
+    showSuccessMessage();
+  } else {
+    showErrorMessage(reply, REPLY_NEGATIVE, userName);
+    isReplyCorrect = false;
+  }
 
-    return isReplyCorrect;
-  };
-
-  repeatTask(checkUserReply, userName, finishOnSuccess);
+  return isReplyCorrect;
 };
+
+const runEvenGame = () => repeatTask(checkUserReply, userName, finishOnSuccess);
 
 export default runEvenGame;
