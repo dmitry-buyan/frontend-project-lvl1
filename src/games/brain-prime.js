@@ -28,24 +28,22 @@ const isPrime = (number) => {
   return true;
 };
 
-const runPrimeGame = () => {
-  const checkUserReply = () => {
-    let isReplyCorrect = true;
-    const num = getRandomInteger();
-    const reply = getUserReply(num);
-    showUserReply(reply);
+const checkUserReply = () => {
+  let isReplyCorrect = true;
+  const num = getRandomInteger();
+  const reply = getUserReply(num);
+  showUserReply(reply);
 
-    if ((isPrime(num) && reply === REPLY_POSITIVE) || (!isPrime(num) && reply === REPLY_NEGATIVE)) {
-      showSuccessMessage();
-    } else {
-      showErrorMessage(reply, REPLY_NEGATIVE, userName);
-      isReplyCorrect = false;
-    }
+  if ((isPrime(num) && reply === REPLY_POSITIVE) || (!isPrime(num) && reply === REPLY_NEGATIVE)) {
+    showSuccessMessage();
+  } else {
+    showErrorMessage(reply, REPLY_NEGATIVE, userName);
+    isReplyCorrect = false;
+  }
 
-    return isReplyCorrect;
-  };
-
-  repeatTask(checkUserReply, userName, finishOnSuccess);
+  return isReplyCorrect;
 };
+
+const runPrimeGame = () => repeatTask(checkUserReply, userName, finishOnSuccess);
 
 export default runPrimeGame;
