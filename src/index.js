@@ -25,8 +25,24 @@ const showSuccessMessage = () => console.log('Correct!');
 const showErrorMessage = (userReply, correctReply, userName) => console.log(`'${userReply}' is wrong answer ;(. Correct answer was '${correctReply}'.\nLet's try again, ${userName}!`);
 const finishOnSuccess = (userName) => console.log(`Congratulations, ${userName}!`);
 
+const repeatTask = (checkReply, userName, finishTask) => {
+  let totalCorrectAnswers = 0;
+
+  while (totalCorrectAnswers < MAX_ROUNDS) {
+    const isReplyCorrect = checkReply();
+    if (isReplyCorrect) {
+      totalCorrectAnswers += 1;
+    } else {
+      return;
+    }
+  }
+
+  if (totalCorrectAnswers === MAX_ROUNDS) {
+    finishTask(userName);
+  }
+};
+
 export {
-  MAX_ROUNDS,
   REPLY_POSITIVE,
   REPLY_NEGATIVE,
   welcomeUser,
@@ -37,4 +53,5 @@ export {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
+  repeatTask,
 };

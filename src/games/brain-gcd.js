@@ -1,5 +1,4 @@
 import {
-  MAX_ROUNDS,
   welcomeUser,
   getUserReply,
   showUserReply,
@@ -7,6 +6,7 @@ import {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
+  repeatTask,
 } from '../index.js';
 
 const intro = 'Find the greatest common divisor of given numbers.';
@@ -25,12 +25,12 @@ const getAllDevisors = (num) => {
 };
 
 const runGcdGame = () => {
-  let isReplyCorrect = true;
   const numCount = 2;
 
   const checkUserReply = () => {
+    let isReplyCorrect = true;
     const integers = Array.from({ length: numCount }, () => getRandomInteger() * numCount);
-    const userReply = getUserReply(integers.join(' '));
+    const userReply = Number(getUserReply(integers.join(' ')));
     showUserReply(userReply);
 
     const [num1, num2] = integers;
@@ -39,29 +39,17 @@ const runGcdGame = () => {
     const commonDevisors = firstDevisors.filter((item) => secondDevisors.includes(item));
     const correctReply = Math.max(...commonDevisors);
 
-    if (Number(userReply) === correctReply) {
+    if (userReply === correctReply) {
       showSuccessMessage();
     } else {
       showErrorMessage(userReply, correctReply, userName);
       isReplyCorrect = false;
     }
+
+    return isReplyCorrect;
   };
 
-  let totalCorrectAnswers = 0;
-
-  for (let i = 0; i < MAX_ROUNDS; i += 1) {
-    checkUserReply();
-
-    if (isReplyCorrect) {
-      totalCorrectAnswers += 1;
-    } else {
-      break;
-    }
-  }
-
-  if (totalCorrectAnswers === MAX_ROUNDS) {
-    finishOnSuccess(userName);
-  }
+  repeatTask(checkUserReply, userName, finishOnSuccess);
 };
 
 export default runGcdGame;

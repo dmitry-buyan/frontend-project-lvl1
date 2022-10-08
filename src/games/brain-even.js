@@ -1,5 +1,4 @@
 import {
-  MAX_ROUNDS,
   REPLY_POSITIVE,
   REPLY_NEGATIVE,
   welcomeUser,
@@ -9,6 +8,7 @@ import {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
+  repeatTask,
 } from '../index.js';
 
 const isEven = (number) => number % 2 === 0;
@@ -17,41 +17,28 @@ const intro = `Answer "${REPLY_POSITIVE}" if the number is even, otherwise answe
 const userName = welcomeUser(intro);
 
 const runEvenGame = () => {
-  let isReplyCorrect = true;
-
-  const checkUserReply = (number) => {
-    const userReply = getUserReply(number);
+  const checkUserReply = () => {
+    let isReplyCorrect = true;
+    const randomInteger = getRandomInteger();
+    const userReply = getUserReply(randomInteger);
     showUserReply(userReply);
 
-    if ((isEven(number) && userReply === REPLY_POSITIVE)) {
+    if ((isEven(randomInteger) && userReply === REPLY_POSITIVE)) {
       showSuccessMessage();
-    } else if ((!isEven(number) && userReply === REPLY_NEGATIVE)) {
+    } else if ((!isEven(randomInteger) && userReply === REPLY_NEGATIVE)) {
       showSuccessMessage();
-    } else if ((isEven(number) && userReply === REPLY_NEGATIVE)) {
+    } else if ((isEven(randomInteger) && userReply === REPLY_NEGATIVE)) {
       showErrorMessage(userReply, REPLY_POSITIVE, userName);
       isReplyCorrect = false;
     } else {
       showErrorMessage(userReply, REPLY_NEGATIVE, userName);
       isReplyCorrect = false;
     }
+
+    return isReplyCorrect;
   };
 
-  let totalCorrectAnswers = 0;
-
-  for (let i = 0; i < MAX_ROUNDS; i += 1) {
-    const randomInteger = getRandomInteger();
-    checkUserReply(randomInteger);
-
-    if (isReplyCorrect) {
-      totalCorrectAnswers += 1;
-    } else {
-      break;
-    }
-  }
-
-  if (totalCorrectAnswers === MAX_ROUNDS) {
-    finishOnSuccess(userName);
-  }
+  repeatTask(checkUserReply, userName, finishOnSuccess);
 };
 
 export default runEvenGame;

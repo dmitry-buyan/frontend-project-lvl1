@@ -1,5 +1,4 @@
 import {
-  MAX_ROUNDS,
   welcomeUser,
   getUserReply,
   showUserReply,
@@ -8,6 +7,7 @@ import {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
+  repeatTask,
 } from '../index.js';
 
 const getRandomMathExpression = () => {
@@ -41,38 +41,25 @@ const intro = 'What is the result of the expression?';
 const userName = welcomeUser(intro);
 
 const runCalcGame = () => {
-  let isReplyCorrect = true;
-
   const checkUserReply = () => {
+    let isReplyCorrect = true;
     const expression = getRandomMathExpression();
-    const userReply = getUserReply(expression);
+    const userReply = Number(getUserReply(expression));
     showUserReply(userReply);
 
     const correctReply = calculateExpression(expression);
 
-    if (Number(userReply) === correctReply) {
+    if (userReply === correctReply) {
       showSuccessMessage();
     } else {
       showErrorMessage(userReply, correctReply, userName);
       isReplyCorrect = false;
     }
+
+    return isReplyCorrect;
   };
 
-  let totalCorrectAnswers = 0;
-
-  for (let i = 0; i < MAX_ROUNDS; i += 1) {
-    checkUserReply();
-
-    if (isReplyCorrect) {
-      totalCorrectAnswers += 1;
-    } else {
-      break;
-    }
-  }
-
-  if (totalCorrectAnswers === MAX_ROUNDS) {
-    finishOnSuccess(userName);
-  }
+  repeatTask(checkUserReply, userName, finishOnSuccess);
 };
 
 export default runCalcGame;
