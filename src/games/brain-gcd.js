@@ -7,7 +7,7 @@ import {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
-} from '../src/index.js';
+} from '../index.js';
 
 const intro = 'Find the greatest common divisor of given numbers.';
 const userName = welcomeUser(intro);

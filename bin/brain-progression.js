@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import findMissingNumber from '../games/brain-progression.js';
+import findMissingNumber from '../src/games/brain-progression.js';
 
 findMissingNumber();

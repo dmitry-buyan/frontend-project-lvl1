@@ -7,7 +7,7 @@ import {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
-} from '../src/index.js';
+} from '../index.js';
 
 const MIN_LENGTH = 5;
 const MAX_LENGTH = 10;

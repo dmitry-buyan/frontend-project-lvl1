@@ -9,25 +9,37 @@ import {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
-} from '../src/index.js';
+} from '../index.js';
 
-const isEven = (number) => number % 2 === 0;
-
-const intro = `Answer "${REPLY_POSITIVE}" if the number is even, otherwise answer "${REPLY_NEGATIVE}".`;
+const intro = `Answer "${REPLY_POSITIVE}" if given number is prime. Otherwise answer "${REPLY_NEGATIVE}".`;
 const userName = welcomeUser(intro);
 
-const checkParity = () => {
+const isPrime = (number) => {
+  if (number < 2) {
+    return false;
+  }
+
+  for (let i = 2; i <= number / 2; i += 1) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const checkPrimeNumber = () => {
   let isReplyCorrect = true;
 
   const checkUserReply = (number) => {
     const userReply = getUserReply(number);
     showUserReply(userReply);
 
-    if ((isEven(number) && userReply === REPLY_POSITIVE)) {
+    if (isPrime(number) && userReply === REPLY_POSITIVE) {
       showSuccessMessage();
-    } else if ((!isEven(number) && userReply === REPLY_NEGATIVE)) {
+    } else if (!isPrime(number) && userReply === REPLY_NEGATIVE) {
       showSuccessMessage();
-    } else if ((isEven(number) && userReply === REPLY_NEGATIVE)) {
+    } else if (isPrime(number) && userReply === REPLY_NEGATIVE) {
       showErrorMessage(userReply, REPLY_POSITIVE, userName);
       isReplyCorrect = false;
     } else {
@@ -54,4 +66,4 @@ const checkParity = () => {
   }
 };
 
-export default checkParity;
+export default checkPrimeNumber;

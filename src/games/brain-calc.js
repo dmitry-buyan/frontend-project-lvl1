@@ -8,7 +8,7 @@ import {
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
-} from '../src/index.js';
+} from '../index.js';
 
 const getRandomMathExpression = () => {
   const operators = ['+', '-', '*'];
