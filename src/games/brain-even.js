@@ -19,19 +19,14 @@ const userName = welcomeUser(intro);
 const runEvenGame = () => {
   const checkUserReply = () => {
     let isReplyCorrect = true;
-    const randomInteger = getRandomInteger();
-    const userReply = getUserReply(randomInteger);
-    showUserReply(userReply);
+    const num = getRandomInteger();
+    const reply = getUserReply(num);
+    showUserReply(reply);
 
-    if ((isEven(randomInteger) && userReply === REPLY_POSITIVE)) {
+    if ((isEven(num) && reply === REPLY_POSITIVE) || (!isEven(num) && reply === REPLY_NEGATIVE)) {
       showSuccessMessage();
-    } else if ((!isEven(randomInteger) && userReply === REPLY_NEGATIVE)) {
-      showSuccessMessage();
-    } else if ((isEven(randomInteger) && userReply === REPLY_NEGATIVE)) {
-      showErrorMessage(userReply, REPLY_POSITIVE, userName);
-      isReplyCorrect = false;
     } else {
-      showErrorMessage(userReply, REPLY_NEGATIVE, userName);
+      showErrorMessage(reply, REPLY_NEGATIVE, userName);
       isReplyCorrect = false;
     }
 
