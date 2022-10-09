@@ -30,11 +30,11 @@ const isPrime = (number) => {
 
 const checkUserReply = () => {
   let isReplyCorrect = true;
-  const num = getRandomInteger();
-  const reply = getUserReply(num);
+  const int = getRandomInteger();
+  const reply = getUserReply(int);
   showUserReply(reply);
 
-  if ((isPrime(num) && reply === REPLY_POSITIVE) || (!isPrime(num) && reply === REPLY_NEGATIVE)) {
+  if ((isPrime(int) && reply === REPLY_POSITIVE) || (!isPrime(int) && reply === REPLY_NEGATIVE)) {
     showSuccessMessage();
   } else {
     showErrorMessage(reply, REPLY_NEGATIVE, userName);
