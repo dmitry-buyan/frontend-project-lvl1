@@ -16,7 +16,7 @@ const isEven = (number) => number % 2 === 0;
 const intro = `Answer "${REPLY_POSITIVE}" if the number is even, otherwise answer "${REPLY_NEGATIVE}".`;
 const userName = welcomeUser(intro);
 
-const checkUserReply = () => {
+const checkReply = () => {
   let isReplyCorrect = true;
   const num = getRandomInteger();
   const reply = getUserReply(num);
@@ -32,6 +32,6 @@ const checkUserReply = () => {
   return isReplyCorrect;
 };
 
-const runEvenGame = () => repeatTask(checkUserReply, userName, finishOnSuccess);
+const runEvenGame = () => repeatTask(checkReply, userName, finishOnSuccess);
 
 export default runEvenGame;
