@@ -1,13 +1,8 @@
 import {
-  welcomeUser,
   getUserReply,
-  showUserReply,
   getRandomInteger,
   getRandomArrayItem,
-  finishOnSuccess,
-  showSuccessMessage,
-  showErrorMessage,
-  repeatTask,
+  start,
 } from '../index.js';
 
 const getRandomMathExpression = () => {
@@ -38,28 +33,15 @@ const calculateExpression = (string) => {
 };
 
 const intro = 'What is the result of the expression?';
-const userName = welcomeUser(intro);
 
-const runCalcGame = () => {
-  const checkUserReply = () => {
-    let isReplyCorrect = true;
-    const expression = getRandomMathExpression();
-    const userReply = Number(getUserReply(expression));
-    showUserReply(userReply);
+const getCalcGameData = () => {
+  const expression = getRandomMathExpression();
+  const correctReply = calculateExpression(expression);
+  const userReply = Number(getUserReply(expression));
 
-    const correctReply = calculateExpression(expression);
-
-    if (userReply === correctReply) {
-      showSuccessMessage();
-    } else {
-      showErrorMessage(userReply, correctReply, userName);
-      isReplyCorrect = false;
-    }
-
-    return isReplyCorrect;
-  };
-
-  repeatTask(checkUserReply, userName, finishOnSuccess);
+  return { userReply, correctReply };
 };
+
+const runCalcGame = () => start(intro, getCalcGameData);
 
 export default runCalcGame;
