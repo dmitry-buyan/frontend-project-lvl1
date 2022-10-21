@@ -1,18 +1,12 @@
 import {
   REPLY_POSITIVE,
   REPLY_NEGATIVE,
-  welcomeUser,
   getUserReply,
-  showUserReply,
   getRandomInteger,
-  finishOnSuccess,
-  showSuccessMessage,
-  showErrorMessage,
-  repeatTask,
+  start,
 } from '../index.js';
 
 const intro = `Answer "${REPLY_POSITIVE}" if given number is prime. Otherwise answer "${REPLY_NEGATIVE}".`;
-const userName = welcomeUser(intro);
 
 const isPrime = (number) => {
   if (number < 2) {
@@ -28,22 +22,14 @@ const isPrime = (number) => {
   return true;
 };
 
-const checkUserReply = () => {
-  let isReplyCorrect = true;
+const getPrimeGameData = () => {
   const num = getRandomInteger();
-  const reply = getUserReply(num);
-  showUserReply(reply);
+  const userReply = getUserReply(num);
+  const correctReply = isPrime(num) ? REPLY_POSITIVE : REPLY_NEGATIVE;
 
-  if ((isPrime(num) && reply === REPLY_POSITIVE) || (!isPrime(num) && reply === REPLY_NEGATIVE)) {
-    showSuccessMessage();
-  } else {
-    showErrorMessage(reply, REPLY_NEGATIVE, userName);
-    isReplyCorrect = false;
-  }
-
-  return isReplyCorrect;
+  return { userReply, correctReply };
 };
 
-const runPrimeGame = () => repeatTask(checkUserReply, userName, finishOnSuccess);
+const runPrimeGame = () => start(intro, getPrimeGameData);
 
 export default runPrimeGame;
