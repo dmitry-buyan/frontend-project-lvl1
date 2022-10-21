@@ -1,19 +1,13 @@
 import {
-  welcomeUser,
   getUserReply,
-  showUserReply,
   getRandomInteger,
-  finishOnSuccess,
-  showSuccessMessage,
-  showErrorMessage,
-  repeatTask,
+  start,
 } from '../index.js';
 
 const MIN_LENGTH = 5;
 const MAX_LENGTH = 10;
 
 const intro = 'What number is missing in the progression?';
-const userName = welcomeUser(intro);
 
 const getRandomIntInclusive = (min, max) => {
   const minValue = Math.ceil(min);
@@ -37,34 +31,22 @@ const renderProgression = () => {
 
 const getRandomArrayIndex = (arr) => Math.floor(Math.random() * arr.length);
 
-const runProgressionGame = () => {
+const getProgressionGameData = () => {
   const replacer = '..';
 
-  const checkUserReply = () => {
-    let isReplyCorrect = true;
-    const progression = renderProgression();
-    const progressionRandomIndex = getRandomArrayIndex(progression);
-    const index = progression.findIndex((item) => item === progression[progressionRandomIndex]);
+  const progression = renderProgression();
+  const progressionRandomIndex = getRandomArrayIndex(progression);
+  const index = progression.findIndex((item) => item === progression[progressionRandomIndex]);
 
-    const newArray = progression.slice();
-    newArray[index] = replacer;
+  const newArray = progression.slice();
+  newArray[index] = replacer;
 
-    const correctReply = progression[index];
+  const correctReply = progression[index];
+  const userReply = Number(getUserReply(newArray.join(' ')));
 
-    const userReply = getUserReply(newArray.join(' '));
-    showUserReply(userReply);
-
-    if (Number(userReply) === correctReply) {
-      showSuccessMessage();
-    } else {
-      showErrorMessage(userReply, correctReply, userName);
-      isReplyCorrect = false;
-    }
-
-    return isReplyCorrect;
-  };
-
-  repeatTask(checkUserReply, userName, finishOnSuccess);
+  return { userReply, correctReply };
 };
+
+const runProgressionGame = () => start(intro, getProgressionGameData);
 
 export default runProgressionGame;
