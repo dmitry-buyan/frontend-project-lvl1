@@ -1,37 +1,23 @@
 import {
   REPLY_POSITIVE,
   REPLY_NEGATIVE,
-  welcomeUser,
   getUserReply,
-  showUserReply,
   getRandomInteger,
-  finishOnSuccess,
-  showSuccessMessage,
-  showErrorMessage,
-  repeatTask,
+  start,
 } from '../index.js';
 
 const isEven = (number) => number % 2 === 0;
 
 const intro = `Answer "${REPLY_POSITIVE}" if the number is even, otherwise answer "${REPLY_NEGATIVE}".`;
-const userName = welcomeUser(intro);
 
-const checkUserReply = () => {
-  let isReplyCorrect = true;
+const getEvenGameData = () => {
   const num = getRandomInteger();
-  const reply = getUserReply(num);
-  showUserReply(reply);
+  const userReply = getUserReply(num);
+  const correctReply = isEven(num) ? REPLY_POSITIVE : REPLY_NEGATIVE;
 
-  if ((isEven(num) && reply === REPLY_POSITIVE) || (!isEven(num) && reply === REPLY_NEGATIVE)) {
-    showSuccessMessage();
-  } else {
-    showErrorMessage(reply, REPLY_NEGATIVE, userName);
-    isReplyCorrect = false;
-  }
-
-  return isReplyCorrect;
+  return { userReply, correctReply };
 };
 
-const runEvenGame = () => repeatTask(checkUserReply, userName, finishOnSuccess);
+const runEvenGame = () => start(intro, getEvenGameData);
 
 export default runEvenGame;
