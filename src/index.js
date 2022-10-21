@@ -11,47 +11,45 @@ const getRandomInteger = () => {
 
 const getRandomArrayItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-const welcomeUser = (text) => {
-  console.log('Welcome to the Brain Games!');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log(text);
-  return userName;
-};
-
 const getUserReply = (reply) => readlineSync.question(`Question: ${reply} `);
 const showUserReply = (reply) => console.log(`Your answer: ${reply}`);
 const showSuccessMessage = () => console.log('Correct!');
 const showErrorMessage = (userReply, correctReply, userName) => console.log(`'${userReply}' is wrong answer ;(. Correct answer was '${correctReply}'.\nLet's try again, ${userName}!`);
 const finishOnSuccess = (userName) => console.log(`Congratulations, ${userName}!`);
 
-const repeatTask = (checkReply, userName, finishTask) => {
+const start = (message, getReplyData) => {
+  console.log('Welcome to the Brain Games!');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log(message);
+
   let totalCorrectAnswers = 0;
 
   while (totalCorrectAnswers < MAX_ROUNDS) {
-    const isReplyCorrect = checkReply();
-    if (isReplyCorrect) {
+    const { userReply, correctReply } = getReplyData();
+    showUserReply(userReply);
+    if (userReply === correctReply) {
+      showSuccessMessage();
       totalCorrectAnswers += 1;
     } else {
+      showErrorMessage(userReply, correctReply, userName);
       return;
     }
   }
 
   if (totalCorrectAnswers === MAX_ROUNDS) {
-    finishTask(userName);
+    finishOnSuccess(userName);
   }
 };
 
 export {
   REPLY_POSITIVE,
   REPLY_NEGATIVE,
-  welcomeUser,
   getUserReply,
-  showUserReply,
   getRandomInteger,
   getRandomArrayItem,
   finishOnSuccess,
   showSuccessMessage,
   showErrorMessage,
-  repeatTask,
+  start,
 };
